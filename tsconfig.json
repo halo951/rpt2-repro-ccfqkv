@@ -1,0 +1,15 @@
+{
+  // https://github.com/agilgur5/tsconfig
+  "extends": "@agilgur5/tsconfig/src/tsconfig.library.json",
+  // exclude node_modules (the default), dist dir, coverage dir, and example for now
+  "exclude": ["node_modules/", "dist/", "coverage/", "example/"],
+  // all TS files in the src/ dir
+  "include": ["src/**/*"],
+  // see https://www.typescriptlang.org/tsconfig to better understand tsconfigs
+  "compilerOptions": {
+    // output to dist/ dir
+    "outDir": "./dist/",
+    // match output dir to input dir. e.g. dist/index instead of dist/src/index
+    "rootDir": "./src"
+  }
+}
