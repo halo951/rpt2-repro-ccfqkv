@@ -1,16 +1,24 @@
+import { RollupOptions } from 'rollup';
 import typescript from 'rollup-plugin-typescript2';
+import { test } from './plugins/rollup-test-plugin';
 
-export default {
-  input: './src/index.ts',
-  output: {
-    file: './dist/index.js',
-    format: 'esm',
-    exports: 'named',
-  },
-  plugins: [
-    typescript({
-      verbosity: 3,
-      clean: true,
-    }),
-  ],
+export default (): RollupOptions => {
+  return {
+    input: './src/index.ts',
+    output: {
+      exports: 'auto',
+      inlineDynamicImports: true,
+      format: 'cjs',
+      file: `dist/index.cjs.js`,
+    },
+    plugins: [
+      typescript({
+        clean: true,
+        useTsconfigDeclarationDir: true,
+        abortOnError: true,
+      }),
+      // look here
+      test(),
+    ],
+  };
 };
